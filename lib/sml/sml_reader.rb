@@ -3,7 +3,7 @@ require_relative 'sml_message'
 
 # SML Reader
 class SmlReader
-  def intialize(params)
+  def initialize(params)
     @device = params[:device]
     @serialport = Serial.new @device, 9600
     @running = false
@@ -13,7 +13,7 @@ class SmlReader
     @running = true
     sml = SmlMessage.new
     while @running
-      byte = serialport.getbyte
+      byte = @serialport.getbyte
       if sml.finished?
         # sml.readings.each do |r|
         #   pusher.push(r)
