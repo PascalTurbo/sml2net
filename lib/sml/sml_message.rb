@@ -1,4 +1,4 @@
-require 'sml_reading'
+require_relative 'sml_reading'
 
 # A SML Message
 # This class isn't as generic as it should be. There is a lot of
