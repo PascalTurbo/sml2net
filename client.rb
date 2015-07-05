@@ -3,7 +3,7 @@ require_relative 'lib/sml/sml_reader'
 # Start PV-Reader
 def start_pv
   pid_pv = fork do
-    reader_pv = sml_reader.new(device: '/dev/lesekopf0')
+    reader_pv = SmlReader.new(device: '/dev/lesekopf0')
     reader_pv.start
   end
 
@@ -14,7 +14,7 @@ end
 # Start EVS-Reader
 def start_evs
   pid_evs = fork do
-    reader_evs = sml_reader.new(device: '/dev/lesekopf1')
+    reader_evs = SmlReader.new(device: '/dev/lesekopf1')
     reader_evs.start
   end
 
