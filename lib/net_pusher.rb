@@ -9,8 +9,9 @@ class NetPusher
     uri = URI.parse('http://192.168.0.21:4567/reading')
 #    begin
       readings.each do |r|
-        req = Net::HTTP::Post.new(uri.path)
-        req.body = { id: r.id, value: r.value, time: r.time }.to_json
+        req = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'application/json')
+        req.body = { 'data' => { id: r.id, value: r.value, time: r.time }.to_json }
+        
         Net::HTTP.start(uri.host, uri.port) do |http|
           http.request req
         end

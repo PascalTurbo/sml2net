@@ -1,7 +1,12 @@
 require 'sinatra'
+require 'json'
 
-post '/reading/?' do
-  jdata = params[:data]
-  for_json = JSON.parse(jdata)
-  puts for_json
+set :bind, '0.0.0.0'
+
+# Receives the requests from the client(s)
+# and stores the result in the background storage
+post '/reading' do
+  puts "These are the params: #{params}"
+  reading = JSON.parse(params[:data])
+  puts reading
 end
