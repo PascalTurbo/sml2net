@@ -1,5 +1,5 @@
 require 'net/http'
-require_relative 'sml_message'
+require_relative 'sml/sml_message'
 
 # Net Pusher
 class NetPusher

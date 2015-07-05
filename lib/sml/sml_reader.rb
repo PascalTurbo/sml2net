@@ -1,6 +1,6 @@
 require 'logger'
 require 'rubyserial'
-require_relative 'sml/sml_message'
+require_relative 'sml_message'
 require_relative '../net_pusher'
 
 # SML Reader
