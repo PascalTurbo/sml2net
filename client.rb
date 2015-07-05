@@ -22,7 +22,26 @@ def start_evs
   pid_evs
 end
 
-start_pv
+# Is process with pid running
+def running?(pid)
+  begin
+    Process.getpgid(pid)
+  rescue StandardError
+    return false
+  end
+  true
+end
+
+pid_evs = start_evs
+pid_pv = start_pv
+
+# Check if processes are running in background
+# and restart if nescessary
+Kernel.loop do
+  start_evs unless running?(pid_evs)
+  start_pv unless running?(pid_pv)
+  sleep 10
+end
 
 # 1. Pro Device einen eigenen Prozess erstellen
 # 2. Jeder Prozess sendet sein Ergebnis per http an einen "Webservice"

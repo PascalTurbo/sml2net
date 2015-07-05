@@ -1,3 +1,4 @@
+require 'logger'
 require 'rubyserial'
 require_relative 'sml_message'
 
@@ -7,6 +8,7 @@ class SmlReader
     @device = params[:device]
     @serialport = Serial.new @device, 9600
     @running = false
+    @logger = Logger.new("#{@device}.log")
   end
 
   def start
@@ -18,7 +20,7 @@ class SmlReader
         # sml.readings.each do |r|
         #   pusher.push(r)
         # end
-        puts sml.to_s
+        @logger.info(sml.to_s)
         sml = SmlMessage.new
       else
         sml << byte unless byte.nil?
