@@ -19,7 +19,7 @@ class SmlReader
     while @running
       byte = @serialport.getbyte
       if sml.finished?
-        @net_pusher.push(sml.readings)
+        @pusher.push(sml.readings)
         @logger.debug("dev: #{@device}, sml: #{sml}")
         sml = SmlMessage.new
       else
