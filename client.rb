@@ -7,7 +7,7 @@ def start_pv
     reader_pv.start
   end
 
-  pid_pv.dettach
+  Process.detach(pid_pv)
   pid_pv
 end
 
@@ -18,7 +18,7 @@ def start_evs
     reader_evs.start
   end
 
-  pid_evs.dettach
+  Process.detach(pid_evs)
   pid_evs
 end
 
