@@ -8,7 +8,7 @@ class SmlReader
     @device = params[:device]
     @serialport = Serial.new @device, 9600
     @running = false
-    @logger = Logger.new("#{@device}.log")
+    @logger = Logger.new("sml_reader.log")
   end
 
   def start
@@ -20,7 +20,7 @@ class SmlReader
         # sml.readings.each do |r|
         #   pusher.push(r)
         # end
-        @logger.info(sml.to_s)
+        @logger.info("dev: #{@device}, sml: #{sml.to_s}")
         sml = SmlMessage.new
       else
         sml << byte unless byte.nil?
