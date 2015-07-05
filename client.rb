@@ -1,4 +1,4 @@
-require_relative '/lib/sml/sml_reader'
+require_relative 'lib/sml/sml_reader'
 
 # Start PV-Reader
 def start_pv
@@ -22,6 +22,7 @@ def start_evs
   pid_evs
 end
 
+start_pv
 
 # 1. Pro Device einen eigenen Prozess erstellen
 # 2. Jeder Prozess sendet sein Ergebnis per http an einen "Webservice"

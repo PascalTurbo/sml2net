@@ -1,5 +1,5 @@
 require 'rubyserial'
-require 'sml_message'
+require_relative 'sml_message'
 
 def intialize(params)
   @device = params[:device]
