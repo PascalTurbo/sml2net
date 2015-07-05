@@ -1,6 +1,7 @@
 require 'logger'
 require 'rubyserial'
 require_relative 'sml_message'
+require_relative '../net_pusher'
 
 # SML Reader
 class SmlReader
@@ -9,6 +10,7 @@ class SmlReader
     @serialport = Serial.new @device, 9600
     @running = false
     @logger = Logger.new('sml_reader.log')
+    @pusher = NetPusher.new
   end
 
   def start
@@ -17,10 +19,8 @@ class SmlReader
     while @running
       byte = @serialport.getbyte
       if sml.finished?
-        # sml.readings.each do |r|
-        #   pusher.push(r)
-        # end
-        @logger.info("dev: #{@device}, sml: #{sml}")
+        @net_pusher.push(sml.readings)
+        @logger.debug("dev: #{@device}, sml: #{sml}")
         sml = SmlMessage.new
       else
         sml << byte unless byte.nil?
