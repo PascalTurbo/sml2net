@@ -1,4 +1,5 @@
 require 'net/http'
+require 'json'
 require_relative 'sml/sml_message'
 
 # Net Pusher
