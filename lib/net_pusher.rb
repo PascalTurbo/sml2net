@@ -10,7 +10,7 @@ class NetPusher
 
     readings.each do |r|
       req = Net::HTTP::Post.new uri.path
-      req.body = { 'id' => r.id, 'value' => r.value, 'time' => time }.to_json
+      req.body = { 'id' => r.id, 'value' => r.value, 'time' => r.time }.to_json
       Net::HTTP.start(uri.host, uri.port) do |http|
         http.request req
       end

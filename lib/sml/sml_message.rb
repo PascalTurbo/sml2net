@@ -1,3 +1,5 @@
+require 'sml_reading'
+
 # A SML Message
 # This class isn't as generic as it should be. There is a lot of
 # specialized stuff in it.
