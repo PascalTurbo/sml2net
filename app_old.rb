@@ -6,19 +6,6 @@ require_relativ 'lib/sml/sml_message'
 serialport = Serial.new '/dev/lesekopf0', 9600
 test = true
 
-# Represents one reading
-class Reading
-  attr_accessor :id, :value, :pushed
-  attr_reader :time
-
-  def initialize(params)
-    @time = Time.now
-    @pushed = false
-    @id = params[:id]
-    @value = params[:value]
-  end
-end
-
 # Send the readings to emon cms
 class UpdatePusher
   def initialize

@@ -7,6 +7,7 @@ require_relative '../net_pusher'
 class SmlReader
   def initialize(params)
     @device = params[:device]
+    @device_id = params[:device_id]
     @serialport = Serial.new @device, 9600
     @running = false
     @logger = Logger.new('sml_reader.log')
@@ -19,8 +20,8 @@ class SmlReader
     while @running
       byte = @serialport.getbyte
       if sml.finished?
-        @pusher.push(sml.readings)
-        @logger.debug("dev: #{@device}, sml: #{sml}")
+        @pusher.push(sml.readings, @device_id)
+        @logger.debug("dev: #{@device_id}, sml: #{sml}")
         sml = SmlMessage.new
       else
         sml << byte unless byte.nil?
