@@ -1,7 +1,7 @@
 require 'logger'
 require 'rubyserial'
 require_relative 'sml_message'
-require_relative '../net_pusher'
+require_relative '../mqtt_client'
 
 # SML Reader
 class SmlReader
@@ -11,7 +11,7 @@ class SmlReader
     @serialport = Serial.new @device, 9600
     @running = false
     @logger = Logger.new('sml_reader.log')
-    @pusher = NetPusher.new
+    @pusher = MqttClient.new
   end
 
   def start
