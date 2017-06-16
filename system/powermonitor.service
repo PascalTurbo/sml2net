@@ -1,0 +1,13 @@
+[Unit]
+Description=Powermonitor
+
+[Service]
+Type=forking
+User=root
+Group=root
+WorkingDirectory=/opt/powermonitor
+Restart=always
+ExecStart=/bin/bash -lc '/usr/bin/ruby2.1 /opt/powermonitor/client.rb'
+
+[Install]
+WantedBy=multi-user.target

@@ -11,6 +11,7 @@ class SmlReader
     @serialport = Serial.new @device, 9600
     @running = false
     @logger = Logger.new('sml_reader.log')
+    @logger.level = Logger::WARN
     @pusher = MqttClient.new
   end
 
@@ -23,6 +24,7 @@ class SmlReader
         @pusher.push(sml.readings, @device_id)
         @logger.debug("dev: #{@device_id}, sml: #{sml}")
         sml = SmlMessage.new
+        sleep 5
       else
         sml << byte unless byte.nil?
       end
